@@ -1,0 +1,91 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable
+  DTS:refId="Package" xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:CreatorName="W11\W10"
+  DTS:CreatorComputerName="W11"
+  DTS:CreationDate="11/26/2023 10:31:21 AM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{F9B3F837-11D2-4716-A830-5443291ADD46}"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Package3"
+  DTS:DTSID="{54CE2CE7-92B3-4AFF-A8F9-35689F04CE05}"
+  DTS:CreationName="SSIS.Package.3">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[W11\MSSQLSERVER01.BaseCopia]"
+      DTS:ObjectName="W11\MSSQLSERVER01.BaseCopia"
+      DTS:DTSID="{ADBC5C08-7DE9-41CA-B719-3CC359082EF9}"
+      DTS:CreationName="OLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=W11\MSSQLSERVER01;Initial Catalog=BaseCopia;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Crear Tabla Agente"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Crear Tabla Agente"
+      DTS:DTSID="{ACDB9DAD-BD53-43ED-8F72-EDD28D051A61}"
+      DTS:Description="Crear Tabla Agente"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ADBC5C08-7DE9-41CA-B719-3CC359082EF9}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[AGENTE]') AND type in (N'U'))&#xA;BEGIN&#xA;CREATE TABLE [dbo].[AGENTE](&#xA;&#x9;[COD] [char](6) NOT NULL,&#xA;&#x9;[NOMBRE] [char](40) NULL,&#xA;&#x9;[AREA] [char](35) NULL,&#xA;&#x9;[TELEFONO] [char](15) NULL,&#xA;&#x9;[PAIS] [varchar](25) NULL,&#xA;PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[COD] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Crear Tabla Cliente"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Crear Tabla Cliente"
+      DTS:DTSID="{18122C37-9D53-4928-A664-AAD462C6BDB0}"
+      DTS:Description="Crear Tabla Cliente"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{ADBC5C08-7DE9-41CA-B719-3CC359082EF9}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CLIENTE]') AND type in (N'U'))&#xA;BEGIN&#xA;CREATE TABLE [dbo].[CLIENTE](&#xA;&#x9;[COD_C] [char](6) NOT NULL,&#xA;&#x9;[NOMBRE] [char](40) NULL,&#xA;&#x9;[CIUDAD] [char](35) NULL,&#xA;&#x9;[CELULAR] [char](15) NULL,&#xA;&#x9;[CI] [char](25) NULL,&#xA;&#x9;[PUNTUACION] [int] NULL,&#xA;PRIMARY KEY CLUSTERED &#xA;(&#xA;&#x9;[COD_C] ASC&#xA;)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;) ON [PRIMARY]&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Crear Tabla Agente"
+          TopLeft="131.200002247947,92.8000013127047" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Crear Tabla Cliente"
+          TopLeft="382.057149377161,90.9647071693183" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

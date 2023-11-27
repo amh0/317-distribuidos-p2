@@ -1,0 +1,195 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable
+  DTS:refId="Package" xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:CreatorName="W11\W10"
+  DTS:CreatorComputerName="W11"
+  DTS:CreationDate="11/26/2023 7:58:37 AM"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{DD42BE78-EEF9-45A2-B70C-A7C78532E214}"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="Package1"
+  DTS:DTSID="{8A7A3D04-36D4-4F35-9D8A-7F5372B45F50}"
+  DTS:CreationName="SSIS.Package.3">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[W11\MSSQLSERVER01.BaseCopia]"
+      DTS:ObjectName="W11\MSSQLSERVER01.BaseCopia"
+      DTS:DTSID="{5B0D6D4B-AB73-45ED-8BF8-633C8CAE2011}"
+      DTS:CreationName="OLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=W11\MSSQLSERVER01;Initial Catalog=BaseCopia;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Agregar Filas Agente"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Agregar Filas Agente"
+      DTS:DTSID="{82FB56CE-BB22-4762-B0BB-1FD60B34B089}"
+      DTS:Description="Agregar Filas Agente"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5B0D6D4B-AB73-45ED-8BF8-633C8CAE2011}"
+          SQLTask:SqlStatementSource="&#xA;insert into BaseCopia.dbo.AGENTE&#xA;select * &#xA;from BaseOrigen.dbo.AGENTE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Agregar Filas Cliente"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Agregar Filas Cliente"
+      DTS:DTSID="{87259A36-685F-4FAB-A3CD-BA7E5631640D}"
+      DTS:Description="Agregar Filas Cliente"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5B0D6D4B-AB73-45ED-8BF8-633C8CAE2011}"
+          SQLTask:SqlStatementSource="insert into BaseCopia.dbo.CLIENTE&#xA;select * &#xA;from BaseOrigen.dbo.CLIENTE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Crear Tabla Agente"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="0"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Crear Tabla Agente"
+      DTS:DTSID="{5393DDA1-0EBB-4C12-850B-7905EBCCC415}"
+      DTS:Description="Crear Tabla Agente"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5B0D6D4B-AB73-45ED-8BF8-633C8CAE2011}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[AGENTE]') AND type in (N'U'))&#xA;BEGIN&#xA;CREATE TABLE [dbo].[AGENTE](&#xA;&#x9;[COD] [char](6) NULL,&#xA;&#x9;[NOMBRE] [char](40) NULL,&#xA;&#x9;[AREA] [char](35) NULL,&#xA;&#x9;[TELEFONO] [char](15) NULL,&#xA;&#x9;[PAIS] [varchar](25) NULL&#xA;) ON [PRIMARY]&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Crear Tabla Cliente"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ThreadHint="1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Crear Tabla Cliente"
+      DTS:DTSID="{0C1EB524-1DAC-4BC1-9094-26FE45A0FFFE}"
+      DTS:Description="Crear Tabla Cliente"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5B0D6D4B-AB73-45ED-8BF8-633C8CAE2011}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CLIENTE]') AND type in (N'U'))&#xA;BEGIN&#xA;CREATE TABLE [dbo].[CLIENTE](&#xA;&#x9;[COD_C] [char](6) NULL,&#xA;&#x9;[NOMBRE] [char](40) NULL,&#xA;&#x9;[CIUDAD] [char](35) NULL,&#xA;&#x9;[CELULAR] [char](15) NULL,&#xA;&#x9;[CI] [char](25) NULL,&#xA;&#x9;[PUNTUACION] [int] NULL&#xA;) ON [PRIMARY]&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:From="Package\Crear Tabla Agente"
+      DTS:To="Package\Agregar Filas Agente"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:DTSID="{1558B084-AF66-41FF-B9DD-5BB677FB4341}"
+      DTS:CreationName="" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:From="Package\Crear Tabla Cliente"
+      DTS:To="Package\Agregar Filas Cliente"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:DTSID="{AA14E9D4-9323-4F5E-A2D1-2F0CFE14BF3E}"
+      DTS:CreationName="" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="sql11">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Crear Tabla Agente"
+          TopLeft="146.057145358105,92.8000013127047" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Agregar Filas Agente"
+          TopLeft="138.628573803026,185.176473196485" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="226.742859580565,134.400001312705">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.7764718837804"
+              Start="0,0"
+              End="0,43.2764718837804">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.2764718837804" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\Crear Tabla Cliente"
+          TopLeft="364.914291942363,87.5294128800759" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\Agregar Filas Cliente"
+          TopLeft="363.771434780043,186.63529662294" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="450.342863361203,129.129412880076">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.5058837428638"
+              Start="0,0"
+              End="0,50.0058837428638">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.0058837428638" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
